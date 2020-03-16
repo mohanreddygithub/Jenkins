@@ -10,6 +10,6 @@ node {
         sh "scp -i /home/ec2-user/awsdevops.pem /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps/"
        }
     stage ('Executing tests'){
-       http://3.6.93.109:8080/JenkinsAssignment/
+       'http://3.6.93.109:8080/JenkinsAssignment/'
       }
 }
