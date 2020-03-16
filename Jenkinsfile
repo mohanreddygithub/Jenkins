@@ -7,7 +7,6 @@ node {
         sh "${mvnHome}/bin/mvn package"
         }
     stage ('Deploying JenkinsAssignment and 1.0-SNAPSHOT'){
-        cd /var/lib/jenkins/workspace/jenkins-git-and-maven/target
-        scp -i ~/awsdevops.pem JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps/
+        sh "scp -i ~/awsdevops.pem /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps/"
     }
 }
