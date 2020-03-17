@@ -1,7 +1,22 @@
-pipeline {
+pipeline{
+agent any
+    stages{
+    stage('Checkout Source Code')
+        steps{
+            git branch: 'master',
+                url": 'https://github.com/mohanreddygithub/Jenkins'
+            
+        }
+    }
+}
+
+
+
+
+/*pipeline {
     agent any
-        stages{
-            stage('Checkout Source Code') 
+      stages{
+         stage('Checkout Source Code') 
                 steps{
                     git branch: 'master',  
                     url: 'https://github.com/mohanreddygithub/Jenkins'            
@@ -16,3 +31,4 @@ pipeline {
                  }
     
             }
+*/
