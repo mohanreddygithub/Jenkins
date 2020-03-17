@@ -27,6 +27,8 @@ steps {
  
   sshagent(['tomcat']) {            
      //sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@${tomcatDevIp}:${webApps}"
+     sh "ssh ec2-user@$13.234.37.19"
+     sh "cd /var/lib/jenkins/workspace/jenkins-git-and-maven/target"
      sh "scp -i awsdevops.pem /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps"  
      sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
                 sh "ssh ec2-user@${tomcatDevIp} ${tomcatStart}"
