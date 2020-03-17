@@ -9,9 +9,9 @@ node {
     stage ('Deploying JenkinsAssignment and 1.0-SNAPSHOT'){
         //sh "scp -i awsdevops.pem /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps/"
    // sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@${tomcatDevIp}:${webApps}myweb.war"   
-    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@$3.6.93.109:$/opt/tomcat8/webapps/"   
+    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps/"   
     }
-    stage ('Executing tests'){
-       'http://3.6.93.109:8080/JenkinsAssignment/'
-      }
+    //stage ('Executing tests'){
+      // 'http://3.6.93.109:8080/JenkinsAssignment/'
+      //}
 }
