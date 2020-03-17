@@ -26,7 +26,8 @@ steps {
   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
  
   sshagent(['tomcat']) {
-                sh "scp -i awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@${tomcatDevIp}:${webApps}"
+     sh "cd /var/lib/jenkins/workspace/jenkins-git-and-maven/target"           
+     sh "scp -i awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@${tomcatDevIp}:${webApps}"
                 sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
                 sh "ssh ec2-user@${tomcatDevIp} ${tomcatStart}"
             }
