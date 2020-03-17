@@ -4,9 +4,8 @@ agent any
     stage('Checkout Source Code')
         steps{
             git branch: 'master',
-                url": 'https://github.com/mohanreddygithub/Jenkins'
-            
-        }
+                url:'https://github.com/mohanreddygithub/Jenkins'
+                   }
     }
 }
 
