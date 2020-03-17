@@ -16,10 +16,10 @@ stage('SCM Checkout'){
         }
     }
     
-       stage('tomcat-dep'){
+       stage('Deploying JenkinsAssignment and 1.0-SNAPSHOT'){
 steps {
        script {
-           def tomcatDevIp = '3.6.93.109'
+  def tomcatDevIp = '3.6.93.109'
   def tomcatHome = '/opt/tomcat8/'
   def webApps = tomcatHome+'webapps/'
   def tomcatStart = "${tomcatHome}bin/startup.sh"
@@ -28,7 +28,7 @@ steps {
   sshagent(['tomcat']) {
                 sh "scp -o StrictHostKeyChecking=no target/myweb*.war ec2-user@${tomcatDevIp}:${webApps}myweb.war"
                 sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
-       sh "ssh ec2-user@${tomcatDevIp} ${tomcatStart}"
+                sh "ssh ec2-user@${tomcatDevIp} ${tomcatStart}"
             }
        }
 }
