@@ -1,4 +1,16 @@
-pipeline{
+pipeline {
+   agent any
+    stages{
+stage('SCM Checkout'){
+      steps {
+          git branch: 'master',  
+         url: 'https://github.com/mohanreddygithub/Jenkins'
+        }
+    }
+
+
+
+/*pipeline{
 agent any
     stages{
     stage('Checkout Source Code')
