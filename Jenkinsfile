@@ -7,6 +7,8 @@ stage('SCM Checkout'){
          url: 'https://github.com/mohanreddygithub/Jenkins'
         }
     }
+    }
+}
 
 
 
