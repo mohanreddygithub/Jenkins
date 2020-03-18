@@ -24,7 +24,7 @@ stage('Checkout source code'){
   }
         }
     }
-    }
+    
        
           stage('Awaiting Approval for deploying JenkinsAssignment and 1.0-SNAPSHOT') {
         steps {
