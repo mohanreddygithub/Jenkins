@@ -11,7 +11,7 @@ stage('Checkout source code'){
        
        //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
        
-          stage($POM_VERSION){
+          stage("$POM_VERSION"){
     steps {  
   script 
        def mvnHome = tool name: 'maven3', type: 'maven'
