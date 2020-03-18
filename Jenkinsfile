@@ -8,14 +8,7 @@ stage('Checkout source code'){
         }
     }
        
-       //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true
-       
-         /* stage('Read Pom Version'){
-             steps{
-                def mvnPom = readMavenPom 'pom.xml'
-             }
-    }*/
-    
+       //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
        
        stage('Build JenkinsAssignment and ${mvnPom.version}){
     steps {  
@@ -45,9 +38,10 @@ steps {
   def webApps = tomcatHome+'webapps/'
   def tomcatStart = "${tomcatHome}bin/startup.sh"
   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
+  def mvnPom = readMavenPom 'pom.xml'
  
   sshagent(['tomcat']) {   
-     def mvnPom = readMavenPom 'pom.xml'
+     
      sh "scp -i /var/lib/jenkins/workspace/jenkins-git-and-maven/target/awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment_${mvnPom.version}.war ec2-user@${tomcatDevIp}:${webApps}"
      //sh "scp -i /var/lib/jenkins/workspace/jenkins-git-and-maven/target/awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@${tomcatDevIp}:${webApps}"
         // sh "scp -i awsdevops.pem /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps"  
