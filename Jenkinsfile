@@ -11,7 +11,12 @@ stage('Checkout source code'){
        
        //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
        
-       stage('Build JenkinsAssignment and 1.0-SNAPSHOT'){
+       stage ('Publish Stage') {
+            steps {
+                 pom = readMavenPom file: 'pom.xml'
+                 echo pom.version
+                   
+               stage('Build _{"pom.version"}'){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
@@ -19,7 +24,9 @@ stage('Checkout source code'){
   }
         }
     }
-    
+       }
+       }
+    }
        
           stage('Awaiting Approval for deploying JenkinsAssignment and 1.0-SNAPSHOT') {
         steps {
