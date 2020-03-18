@@ -7,6 +7,17 @@ stage('Checkout source code'){
          url: 'https://github.com/mohanreddygithub/Jenkins'
         }
     }
+       
+          stage('Read Pom Version'){
+       pom = readMavenPom file: 'pom.xml'
+       env.POM_VERSION = pom.version
+
+       sh '''#!/bin/bash -xe
+           echo $POM_VERSION
+       '''.stripIndent()
+    }
+       
+       
     stage('Build JenkinsAssignment and 1.0-SNAPSHOT'){
     steps {  
   script {
