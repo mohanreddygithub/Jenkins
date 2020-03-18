@@ -57,6 +57,6 @@ steps {
                 echo "http://3.6.93.109:8080/JenkinsAssignment/"
              }
           
-              } 
+              }
               }
 }
