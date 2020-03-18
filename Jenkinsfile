@@ -21,7 +21,7 @@ stage('Checkout source code'){
         steps {
             script {
               timeout(time: 1, unit: 'MINUTES') {
-                input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
+                input(id: "Deploy Gate", message: "Awaiting approval for deploying JenkinsAssignment and 1.0-SNAPSHOT ${params.project_name}?", ok: 'Deploy')
               }
             }
         }
