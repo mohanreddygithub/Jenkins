@@ -9,12 +9,14 @@ stage('Checkout source code'){
     }
        
           stage('Read Pom Version'){
-       pom = readMavenPom file: 'pom.xml'
+             steps{
+             pom = readMavenPom file: 'pom.xml'
        env.POM_VERSION = pom.version
 
        sh '''#!/bin/bash -xe
            echo $POM_VERSION
        '''.stripIndent()
+             }
     }
        
        
