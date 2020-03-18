@@ -6,16 +6,13 @@ stage('Checkout source code'){
       steps {
           git branch: 'master',  
          url: 'https://github.com/mohanreddygithub/Jenkins'
+         TAG_SELECTOR = readMavenPom().getVersion()
+         echo("TAG_SELECTOR=${TAG_SELECTOR}")
         }
     }
        
        //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
-       stage ('artifactid and maven version'){
-          script {
-                    TAG_SELECTOR = readMavenPom().getVersion()
-                }
-                   echo("TAG_SELECTOR=${TAG_SELECTOR}")
-       
+              
           stage("${TAG_SELECTOR}"){
     steps {  
   script 
@@ -23,7 +20,7 @@ stage('Checkout source code'){
         sh "${mvnHome}/bin/mvn package"
   }
         }
-    }
+    
     
        
           stage('Awaiting Approval for deploying JenkinsAssignment and 1.0-SNAPSHOT') {
