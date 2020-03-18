@@ -48,7 +48,7 @@ steps {
  
   sshagent(['tomcat']) {   
      def mvnPom = readMavenPom 'pom.xml'
-     sh "scp -i /var/lib/jenkins/workspace/jenkins-git-and-maven/target/awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment_${mvnHome.version}.war ec2-user@${tomcatDevIp}:${webApps}"
+     sh "scp -i /var/lib/jenkins/workspace/jenkins-git-and-maven/target/awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment_${mvnPom.version}.war ec2-user@${tomcatDevIp}:${webApps}"
      //sh "scp -i /var/lib/jenkins/workspace/jenkins-git-and-maven/target/awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@${tomcatDevIp}:${webApps}"
         // sh "scp -i awsdevops.pem /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps"  
      //sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
