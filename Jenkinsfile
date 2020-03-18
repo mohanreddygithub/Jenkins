@@ -37,7 +37,7 @@ steps {
        
           stage ('Executing tests'){
              steps{
-                echo {'http://3.6.93.109:8080/JenkinsAssignment/'}
+                echo "http://3.6.93.109:8080/JenkinsAssignment/"
              
           }
               } 
