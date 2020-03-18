@@ -10,8 +10,13 @@ stage('Checkout source code'){
     }
        
        //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
+       stage ('artifactid and maven version'){
+          script {
+                    TAG_SELECTOR = readMavenPom().getVersion()
+                }
+                   echo("TAG_SELECTOR=${TAG_SELECTOR}")
        
-          stage("$POM_VERSION"){
+          stage("${TAG_SELECTOR}"){
     steps {  
   script 
        def mvnHome = tool name: 'maven3', type: 'maven'
@@ -19,7 +24,7 @@ stage('Checkout source code'){
   }
         }
     }
-    
+    }
        
           stage('Awaiting Approval for deploying JenkinsAssignment and 1.0-SNAPSHOT') {
         steps {
