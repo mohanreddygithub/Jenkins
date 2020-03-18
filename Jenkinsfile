@@ -1,7 +1,9 @@
 pipeline {
    agent any
     stages{
-       //def mvnPom = readMavenPom 'pom.xml'
+       steps{
+       def mvnPom = readMavenPom 'pom.xml'
+       
 stage('Checkout source code'){
       steps {
           git branch: 'master',  
@@ -11,7 +13,7 @@ stage('Checkout source code'){
        
        //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
        
-       stage('Build JenkinsAssignment and 1.0-SNAPSHOT'){
+          stage('${artifact_id and version}'){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
@@ -19,6 +21,7 @@ stage('Checkout source code'){
   }
         }
     }
+       }
     
        
           stage('Awaiting Approval for deploying JenkinsAssignment and 1.0-SNAPSHOT') {
