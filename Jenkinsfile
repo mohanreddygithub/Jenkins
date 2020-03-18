@@ -1,7 +1,7 @@
 pipeline {
    agent any
     stages{
-            def pomv = '$POM_VERSION"  
+           
 stage('Checkout source code'){
       steps {
           git branch: 'master',  
