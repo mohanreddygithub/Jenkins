@@ -34,7 +34,10 @@ steps {
        }
 }
    }
-       
+       steps{
+          stage ('Executing tests')
+       //http://3.6.93.109:8080/JenkinsAssignment/
+       } 
      
        
     }
