@@ -1,6 +1,7 @@
 pipeline {
    agent any
     stages{
+       //def mvnPom = readMavenPom 'pom.xml'
 stage('Checkout source code'){
       steps {
           git branch: 'master',  
