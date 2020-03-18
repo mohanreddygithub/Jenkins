@@ -1,16 +1,16 @@
 pipeline {
    agent any
     stages{
-       
 stage('Checkout source code'){
       steps {
           git branch: 'master',  
          url: 'https://github.com/mohanreddygithub/Jenkins'
         }
     }
-             //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
        
-       stage('Build JenkinsAssignment and 1.0-SNAPSHOT'){
+       //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
+       
+       stage('Build JenkinsAssignment and ${mvnPom.version}){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
@@ -38,10 +38,11 @@ steps {
   def webApps = tomcatHome+'webapps/'
   def tomcatStart = "${tomcatHome}bin/startup.sh"
   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
-  
+  //def mvnPom = readMavenPom 'pom.xml'
+ 
   sshagent(['tomcat']) {   
      
-     sh "scp -i /var/lib/jenkins/workspace/jenkins-git-and-maven/target/awsdevops.pem -o StrictHostKeyChecking=no "/var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war" ec2-user@${tomcatDevIp}:${webApps}"
+     sh "scp -i /var/lib/jenkins/workspace/jenkins-git-and-maven/target/awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@${tomcatDevIp}:${webApps}"
      //sh "scp -i /var/lib/jenkins/workspace/jenkins-git-and-maven/target/awsdevops.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@${tomcatDevIp}:${webApps}"
         // sh "scp -i awsdevops.pem /var/lib/jenkins/workspace/jenkins-git-and-maven/target/JenkinsAssignment.war ec2-user@3.6.93.109:/opt/tomcat8/webapps"  
      //sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
@@ -53,9 +54,8 @@ steps {
                  stage ('Executing tests'){
              steps{
                 echo "http://3.6.93.109:8080/JenkinsAssignment/"
-             
-          }
+             }
+          
               } 
               }
 }
-
