@@ -34,11 +34,13 @@ steps {
        }
 }
    }
-       steps{
+       
           stage ('Executing tests'){
+             steps{
+                echo {"http://3.6.93.109:8080/JenkinsAssignment/"}
+             
           }
-       //http://3.6.93.109:8080/JenkinsAssignment/
-       } 
+              } 
      
        
     }
