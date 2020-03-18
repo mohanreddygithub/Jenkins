@@ -12,7 +12,7 @@ stage('Checkout source code'){
        
           stage('Read Pom Version'){
              steps{
-                def mvnVersion = readMavenPom 'pom.xml'
+                def mvnVersion = 'readMavenPom 'pom.xml''
         /*     pom = readMavenPom file: 'pom.xml'
        env.POM_VERSION = pom.version
 
