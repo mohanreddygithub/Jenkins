@@ -1,14 +1,16 @@
 pipeline {
    agent any
     stages{
+       steps {
+       def mvnPom = readMavenPom 'pom.xml'
+       }
 stage('Checkout source code'){
       steps {
           git branch: 'master',  
          url: 'https://github.com/mohanreddygithub/Jenkins'
         }
     }
-       def mvnPom = readMavenPom 'pom.xml'
-       //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
+             //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
        
        stage('Build JenkinsAssignment and "${mvnPom.version}"'){
     steps {  
