@@ -12,7 +12,7 @@ stage('Checkout source code'){
        
           stage('Read Pom Version'){
              steps{
-                def mvnVersion = 'readMavenPom 'pom.xml''
+                def mvnPom = readMavenPom 'pom.xml'
         /*     pom = readMavenPom file: 'pom.xml'
        env.POM_VERSION = pom.version
 
@@ -24,7 +24,7 @@ stage('Checkout source code'){
     }
     
        
-       stage('Build JenkinsAssignment and ${mvnVersion}){
+       stage('Build JenkinsAssignment and ${mvnPom.version}){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
