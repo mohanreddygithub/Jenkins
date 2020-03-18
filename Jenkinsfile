@@ -13,7 +13,7 @@ stage('Checkout source code'){
        
        //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
        
-          stage('${artifact_id and version}'){
+          stage('${"artifactId" and "version"}'){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
