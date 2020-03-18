@@ -1,13 +1,13 @@
 pipeline {
    agent any
     stages{
-stage('SCM Checkout'){
+stage('Checkout source code'){
       steps {
           git branch: 'master',  
          url: 'https://github.com/mohanreddygithub/Jenkins'
         }
     }
-    stage('Mvn Package'){
+    stage('Build JenkinsAssignment and 1.0-SNAPSHOT'){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
