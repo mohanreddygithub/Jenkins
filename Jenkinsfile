@@ -16,6 +16,21 @@ stage('Checkout source code'){
         }
     }
     
+       
+          stage('Awaiting Approval for deploying JenkinsAssignment and 1.0-SNAPSHOT') {
+        steps {
+            script {
+              timeout(time: 5, unit: 'MINUTES') {
+                input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
+              }
+            }
+        }
+     }
+       
+       
+       
+       
+       
        stage('Deploying JenkinsAssignment and 1.0-SNAPSHOT'){
 steps {
        script {
