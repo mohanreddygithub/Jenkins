@@ -13,10 +13,10 @@ stage('Checkout source code'){
        
        stage ('Publish Stage') {
             steps {
-                 pom = readMavenPom file: 'pom.xml'
-                 echo pom.version
+                 pomv= readMavenPom file: 'pom.xml'
+                 echo pomv.version
                    
-               stage('Build _{"pom.version"}'){
+               stage('Build _{"$pomv.version"}'){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
