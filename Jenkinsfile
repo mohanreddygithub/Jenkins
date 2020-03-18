@@ -10,7 +10,7 @@ stage('Checkout source code'){
        
        //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true 
        
-       stage('Build JenkinsAssignment and 1.0-SNAPSHOT}){
+       stage('Build JenkinsAssignment and 1.0-SNAPSHOT'){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
