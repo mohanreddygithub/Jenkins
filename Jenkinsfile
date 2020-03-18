@@ -8,19 +8,23 @@ stage('Checkout source code'){
         }
     }
        
+       //def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true
+       
           stage('Read Pom Version'){
              steps{
-             pom = readMavenPom file: 'pom.xml'
+                def mvnVersion = readMavenPom 'pom.xml'
+        /*     pom = readMavenPom file: 'pom.xml'
        env.POM_VERSION = pom.version
 
        sh '''#!/bin/bash -xe
            echo $POM_VERSION
        '''.stripIndent()
+       */
              }
     }
+    
        
-       
-    stage('Build JenkinsAssignment and 1.0-SNAPSHOT'){
+       stage('Build JenkinsAssignment and ${mvnVersion}){
     steps {  
   script {
        def mvnHome = tool name: 'maven3', type: 'maven'
@@ -39,11 +43,7 @@ stage('Checkout source code'){
             }
         }
      }
-       
-       
-       
-       
-       
+            
        stage('Deploying JenkinsAssignment and 1.0-SNAPSHOT'){
 steps {
        script {
@@ -62,15 +62,12 @@ steps {
        }
 }
    }
-       
-          stage ('Executing tests'){
+                 stage ('Executing tests'){
              steps{
                 echo "http://3.6.93.109:8080/JenkinsAssignment/"
              
           }
               } 
-     
-       
-    }
+              }
 }
 
