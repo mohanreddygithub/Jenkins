@@ -34,7 +34,7 @@ stage('Checkout source code'){
        stage('Deploying JenkinsAssignment and 1.0-SNAPSHOT'){
 steps {
        script {
-  def tomcatDevIp = '3.6.93.109'
+  def tomcatDevIp = '13.126.133.96'
   def tomcatHome = '/opt/tomcat8/'
   def webApps = tomcatHome+'webapps/'
   def tomcatStart = "${tomcatHome}bin/startup.sh"
